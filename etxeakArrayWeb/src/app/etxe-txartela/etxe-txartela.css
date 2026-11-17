@@ -1,0 +1,24 @@
+.txartela {
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #f3f3f3;
+}
+
+.argazkia {
+    width: 100%;
+    height: 220%;
+    object-fit: cover;
+}
+
+.edukia {
+    padding: 16px;
+}
+
+h2 {
+    margin-top: 0;
+    color: #30206f;
+}
+
+a {
+    color: #00857e;
+}
