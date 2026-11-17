@@ -1,13 +1,13 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Etxea } from '../etxea';
+import { Etxea } from '../../interfaces/etxea';
 
 @Component({
-  imports: [RouterLink],
   selector: 'app-etxe-txartela',
-  styleUrl: './etxe-txartela.css',
+  imports: [RouterLink],
   templateUrl: './etxe-txartela.html',
+  styleUrl: './etxe-txartela.css'
 })
 export class EtxeTxartela {
-  etxea = input.required<Etxea>(); 
+  etxea = input.required<Etxea>();
 }
