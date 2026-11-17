@@ -1,1 +1,23 @@
-<p>etxe-xehetasuna works!</p>
+@if (etxea; as etxeaAurkitua) {
+  <article class="xehetasuna">
+    <img
+      [src]="etxeaAurkitua.photo"
+      [alt]="etxeaAurkitua.name"
+    >
+
+    <h1>{{ etxeaAurkitua.name }}</h1>
+
+    <p>
+      Kokapena: {{ etxeaAurkitua.city }},
+      {{ etxeaAurkitua.state }}
+    </p>
+
+    <p>Unitate libreak: {{ etxeaAurkitua.availableUnits }}</p>
+
+    <p>Wifia: {{ etxeaAurkitua.wifi ? 'Bai' : 'Ez' }}</p>
+
+    <p>Garbitegia: {{ etxeaAurkitua.laundry ? 'Bai' : 'Ez' }}</p>
+  </article>
+} @else {
+  <p>Ez da etxea aurkitu.</p>
+}
