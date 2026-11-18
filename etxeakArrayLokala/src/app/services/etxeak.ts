@@ -1,8 +1,6 @@
 import { Service } from '@angular/core';
 import { Etxea } from '../interfaces/etxea';
 
-const ARGAZKIAK = 'https://angular.dev/assets/images/tutorials/common/';
-
 @Service()
 export class Etxeak {
   etxeak: Etxea[] = [
