@@ -1,0 +1,17 @@
+<article class="txartela">
+  <img
+    [src]="etxea().photo"
+    [alt]="etxea().name"
+    class="argazkia"
+  >
+
+  <div class="edukia">
+    <h2>{{ etxea().name }}</h2>
+
+    <p>{{ etxea().city }}, {{ etxea().state }}</p>
+
+    <a [routerLink]="['/xehetasuna', etxea().id]">
+      Gehiago jakin
+    </a>
+  </div>
+</article>

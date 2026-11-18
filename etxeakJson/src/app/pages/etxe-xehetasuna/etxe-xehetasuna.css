@@ -1,0 +1,16 @@
+.xehetasuna {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.xehetasuna img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+h1 {
+  color: #30206f;
+}
