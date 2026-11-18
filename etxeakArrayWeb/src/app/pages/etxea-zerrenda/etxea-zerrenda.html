@@ -1,5 +1,17 @@
+<section class="bilatzailea">
+  <input
+    type="text"
+    placeholder="Bilatu hiriaren arabera"
+    #bilaketa
+  >
+
+  <button type="button" (click)="bilatu(bilaketa.value)">
+    Bilatu
+  </button>
+</section>
+
 <section class="etxe-zerrenda">
-  @for (etxea of etxeak(); track etxea.id) {
+  @for (etxea of etxeakFiltratu(); track etxea.id) {
     <app-etxe-txartela [etxea]="etxea"></app-etxe-txartela>
   }
 </section>
