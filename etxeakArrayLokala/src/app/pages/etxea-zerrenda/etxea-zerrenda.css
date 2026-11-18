@@ -1,0 +1,33 @@
+.etxe-zerrenda {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 700px) {
+  .etxe-zerrenda {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bilatzailea {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+}
+
+.bilatzailea input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.bilatzailea button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #00857e;
+  color: white;
+  cursor: pointer;
+}
