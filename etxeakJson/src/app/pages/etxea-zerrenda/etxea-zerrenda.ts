@@ -1,43 +1,28 @@
-import { Component, inject, signal } from '@angular/core';
-import { EtxeTxartela } from '../etxe-txartela/etxe-txartela';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Etxeak } from '../../services/etxeak';
 import { Etxea } from '../../interfaces/etxea';
+import { EtxeTxartela } from '../etxe-txartela/etxe-txartela';
 
 @Component({
-  imports: [EtxeTxartela],
   selector: 'app-etxea-zerrenda',
-  styleUrl: './etxea-zerrenda.css',
+  standalone: true,
+  imports: [EtxeTxartela],
   templateUrl: './etxea-zerrenda.html',
+  styleUrl: './etxea-zerrenda.css',
 })
-
 export class EtxeaZerrenda {
+  private etxeZerbitzua = inject(Etxeak);
 
-  etxeakZerbitzua = inject(Etxeak);
+  etxeak = this.etxeZerbitzua.guztiak;
+  iragazkia = signal('');
 
-  etxeak = signal<Etxea[]>([]);
+  etxeakFiltratu = computed(() => {
+    const testua = this.iragazkia().toLowerCase().trim();
 
-  etxeakFiltratuta = signal<Etxea[]>([]);
-
-  constructor() {
-    this.etxeakZerbitzua.guztiak().subscribe({
-      next: (datuak) => {
-        this.etxeak.set(datuak);
-        this.etxeakFiltratuta.set(datuak);
-      },
-      error: (errorea) => {
-        console.error('Errorea etxeak kargatzean:', errorea);
-      }
-    });
-  }
+    return this.etxeak().filter((etxea: Etxea) => etxea.city.toLowerCase().includes(testua));
+  });
 
   bilatu(testua: string): void {
-    const bilaketa = testua.toLowerCase().trim();
-
-    this.etxeakFiltratuta.set(
-      this.etxeak().filter(etxea =>
-        etxea.city.toLowerCase().includes(bilaketa)
-      )
-    );
+    this.iragazkia.set(testua);
   }
-
 }

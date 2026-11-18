@@ -10,16 +10,15 @@ export class Etxeak {
   private apiUrl = 'http://localhost:3000/etxeak';
 
   private _etxeak = signal<Etxea[]>([]);
-  public etxeak = this._etxeak.asReadonly();
+  public guztiak = this._etxeak.asReadonly();
+
+  constructor() {
+    this.getEtxeak();
+  }
 
   getEtxeak(): void {
     this.http.get<Etxea[]>(this.apiUrl).subscribe({
-      next: (datos) => {
-        this._etxeak.set(datos);
-      },
-      error: (err) => {
-        console.error('Errorea datuak kargatzean:', err);
-      },
+      next: (datos) => this._etxeak.set(datos),
     });
   }
 }

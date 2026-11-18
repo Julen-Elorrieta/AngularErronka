@@ -1,25 +1,37 @@
-@if (kargatzen()) {
-  <p>Kargatzen...</p>
-} @else if (errorea()) {
-  <p>Ezin izan da etxea kargatu. Egiaztatu etxea existitzen dela eta zerbitzaria martxan dagoela.</p>
-} @else if (etxea(); as etxeaAurkitua) {
-  <article class="xehetasuna">
-    <img
-      [src]="etxeaAurkitua.photo"
-      [alt]="etxeaAurkitua.name"
-    >
+<section class="interesdun-formularioa">
+  <h2>Harremanetarako formularioa</h2>
 
-    <h1>{{ etxeaAurkitua.name }}</h1>
+  <form #interesForm="ngForm" (ngSubmit)="bidaliFormularioa(interesForm)">
+    <div>
+      <label for="izena">Izena:</label>
+      <input type="text" id="izena" name="izena" [(ngModel)]="izena" required />
+    </div>
 
-    <p>
-      Kokapena: {{ etxeaAurkitua.city }},
-      {{ etxeaAurkitua.state }}
-    </p>
+    <div>
+      <label for="abizena">Abizena:</label>
+      <input type="text" id="abizena" name="abizena" [(ngModel)]="abizena" required />
+    </div>
 
-    <p>Unitate libreak: {{ etxeaAurkitua.availableUnits }}</p>
+    <div>
+      <label for="emaila">Emaila:</label>
+      <input type="email" id="emaila" name="emaila" [(ngModel)]="emaila" required email />
+    </div>
 
-    <p>Wifia: {{ etxeaAurkitua.wifi ? 'Bai' : 'Ez' }}</p>
+    <button type="submit" [disabled]="interesForm.invalid">Bidali</button>
+  </form>
+</section>
 
-    <p>Garbitegia: {{ etxeaAurkitua.laundry ? 'Bai' : 'Ez' }}</p>
-  </article>
-}
+<section class="interesdun-zerrenda">
+  <h2>Interesdunen zerrenda</h2>
+
+  <ul>
+    @for (interesduna of etxekoInteresdunak(); track $index) {
+      <li>
+        <strong>{{ interesduna.izena }} {{ interesduna.abizena }}</strong> -
+        {{ interesduna.emaila }}
+      </li>
+    } @empty {
+      <p>Oraindik ez dago interesdunik etxe honetarako.</p>
+    }
+  </ul>
+</section>
