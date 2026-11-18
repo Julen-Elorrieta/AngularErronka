@@ -1,4 +1,8 @@
-@if (etxea; as etxeaAurkitua) {
+@if (kargatzen()) {
+  <p>Kargatzen...</p>
+} @else if (errorea()) {
+  <p>Ezin izan da etxea kargatu. Egiaztatu etxea existitzen dela eta zerbitzaria martxan dagoela.</p>
+} @else if (etxea(); as etxeaAurkitua) {
   <article class="xehetasuna">
     <img
       [src]="etxeaAurkitua.photo"
@@ -18,6 +22,4 @@
 
     <p>Garbitegia: {{ etxeaAurkitua.laundry ? 'Bai' : 'Ez' }}</p>
   </article>
-} @else {
-  <p>Ez da etxea aurkitu.</p>
 }

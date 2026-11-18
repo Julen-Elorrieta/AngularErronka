@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Etxeak } from '../../services/etxeak';
+import { Etxea } from '../../interfaces/etxea';
 
 @Component({
   imports: [],
@@ -13,5 +14,21 @@ export class EtxeXehetasuna {
   etxeZerbitzua = inject(Etxeak)
 
   id = this.route.snapshot.paramMap.get('id')??''; 
-   etxea = this.etxeZerbitzua.bat(this.id);
+  
+  etxea = signal<Etxea |undefined>(undefined); 
+  kargatzen = signal(true); 
+  errorea = signal(false); 
+
+  constructor() {
+    this.etxeZerbitzua.bat(this.id).subscribe({
+      next: (datuak) => {
+        this.etxea.set(datuak); 
+        this.kargatzen.set(false)
+      }, 
+      error: () => {
+        this.errorea.set(true); 
+        this.kargatzen.set(false)
+      }
+    }); 
+  }
 }

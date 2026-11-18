@@ -9,20 +9,35 @@ import { Etxea } from '../../interfaces/etxea';
   styleUrl: './etxea-zerrenda.css',
   templateUrl: './etxea-zerrenda.html',
 })
+
 export class EtxeaZerrenda {
-  etxeZerbitzua = inject(Etxeak); 
 
-  etxeak = signal(this.etxeZerbitzua.guztiak())
+  etxeakZerbitzua = inject(Etxeak);
 
-  etxeakFiltratu = signal<Etxea[]>(this.etxeak()); 
+  etxeak = signal<Etxea[]>([]);
+
+  etxeakFiltratuta = signal<Etxea[]>([]);
+
+  constructor() {
+    this.etxeakZerbitzua.guztiak().subscribe({
+      next: (datuak) => {
+        this.etxeak.set(datuak);
+        this.etxeakFiltratuta.set(datuak);
+      },
+      error: (errorea) => {
+        console.error('Errorea etxeak kargatzean:', errorea);
+      }
+    });
+  }
 
   bilatu(testua: string): void {
-    const bilaketa = testua.toLocaleLowerCase().trim(); 
+    const bilaketa = testua.toLowerCase().trim();
 
-    this.etxeakFiltratu.set(
-      this.etxeak().filter(etxea => 
-        etxea.city.toLocaleLowerCase().includes(bilaketa)
+    this.etxeakFiltratuta.set(
+      this.etxeak().filter(etxea =>
+        etxea.city.toLowerCase().includes(bilaketa)
       )
-    ); 
+    );
   }
+
 }
