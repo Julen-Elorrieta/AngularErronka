@@ -13,4 +13,6 @@ export const routes: Routes = [
     component: EtxeXehetasuna,
     title: 'Etxeen Xehetasuna',
   },
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: '' },
 ];
