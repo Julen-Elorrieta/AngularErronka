@@ -21,4 +21,8 @@ export class Etxeak {
       next: (datos) => this._etxeak.set(datos),
     });
   }
+
+  bat(id: string) {
+  return this.http.get<Etxea>(`${this.apiUrl}/${id}`);
+}
 }
